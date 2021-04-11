@@ -1,9 +1,11 @@
 <template>
 <div v-if="products.length">
     <paginate name="products" :list="products" :per="perPage"> 
-        <p  v-for="product in paginated('products')" v-bind:key="product.id">
-            {{product.name}}
-        </p>
+        <b-card-group columns>
+            <product-item v-for="product in paginated('products')"
+            :product="product" :key="product.id" @addToCart="addProductToCart">
+            </product-item>
+        </b-card-group>
     </paginate>
     <paginate-links for="products" :classes="{
         'ul': 'pagination',
@@ -16,8 +18,12 @@
 
 <script>
 import {mapActions, mapMutations, mapState} from 'vuex';
+import ProductItem from './ProductItem';
 
 export default {
+    components: {
+        ProductItem
+    },
     //get products
     mounted() {
         this.fetchProducts();
@@ -37,7 +43,10 @@ export default {
     //map the action in order to establish the products
     methods: {
         //(module, [action])
-        ...mapActions('products', ['fetchProducts'])
+        ...mapActions('products', ['fetchProducts']),
+        addProductToCart(product) {
+            console.log(product);
+        }
     }
 }
 </script>
