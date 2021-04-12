@@ -1,7 +1,7 @@
 <template>
     <div v-if="cart.length">
         <b-table striped hover :items="cart" :fields="fields">
-            <template slot="cell(actions)" slot-scope="cell">
+            <template v-slot:cell(actions)="cell">
                 <b-button size="sm" variant="danger" 
                 @click.stop="removeProductFromCart(cell.item)">
                     Remove 
