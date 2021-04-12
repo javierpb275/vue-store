@@ -44,8 +44,9 @@ export default {
     methods: {
         //(module, [action])
         ...mapActions('products', ['fetchProducts']),
+        ...mapMutations('cart', ['addProduct']),
         addProductToCart(product) {
-            console.log(product);
+            this.addProduct(product);
         }
     }
 }
