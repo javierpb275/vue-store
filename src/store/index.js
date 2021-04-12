@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 //PRODUCTS:
 import products from '../modules/products';
+//CART:
+import cart from '../modules/cart';
 
 Vue.use(Vuex)
 
@@ -14,6 +16,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    products
+    products,
+    cart
   }
 })
