@@ -1,5 +1,18 @@
 <template>
-    
+    <div v-if="cart.length">
+        <b-table striped hover :items="cart" :fields="fields">
+            <template slot="cell(actions)" slot-scope="cell">
+                <b-button size="sm" variant="danger" 
+                @click.stop="removeProductFromCart(cell.item)">
+                    Remove 
+                </b-button>
+            </template>
+        </b-table>
+        <b-alert show variant="success" class="text-center">
+           Total Cost: ${{totalCost}}
+        </b-alert>
+    </div>
+    <b-alert v-else show variant="info">No products in your cart</b-alert>
 </template>
 
 <script>
